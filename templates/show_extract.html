@@ -1,0 +1,102 @@
+<html lang="en">
+
+ 
+
+<head>
+
+    <title>Python pafy-flask youtube extractor</title>
+
+ 
+
+ 
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+ 
+
+    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+
+ 
+
+ 
+
+</head>
+
+ 
+
+<body >
+
+ 
+
+    <div class="container ">
+        <div class="header">
+
+            <h3 class="text-muted">Available Formats</h3>
+
+        </div>        
+
+        <div>
+            <h3 class="text-muted"> Video Title </h3>
+            <h4 class="text-muted">{{title}}</h4>
+        </div>
+
+        <div class="jumbotron">
+            <div class="container marketing" >
+              <div class = "Head">
+
+                <div class="col-lg-4">
+                    <p style="padding-bottom:15px;padding-top:15px;">Filetype</p>
+                </div>
+                <div class="col-lg-4">
+                    <p style="padding-bottom:15px;padding-top:15px;">File-Size(MB)</p>
+                </div>                
+                <div class="col-lg-4">
+                    <p style="padding-bottom:15px;padding-top:15px;">Download Links(Use RightClick->saveAs)</p>
+                </div>                
+              </div>
+            </div>  
+            <!--- loop ---->          
+            {%- block content %}
+            {%- for url,resolution,ext,filesize in final.itervalues() %}
+            <div class="container marketing" >
+              <div class = "stu">
+
+                <div class="col-lg-4">
+                    <p style="padding-bottom:15px;padding-top:15px;">{{ext}}</p>
+                </div>
+                <div class="col-lg-4">
+                    <p style="padding-bottom:15px;padding-top:15px;">{{filesize}}MB</p>
+                </div>                
+                <div class="col-lg-4">
+                    <p> <a class="btn btn-lg btn-success" style="padding-bottom:15px;padding-top:15px;" href='{{url}}' download='{{title}}_{{resolution}}.{{ext}}' filename='{{title}}_{{resolution}}.{{ext}}'>{{ resolution }}</a></p>
+                </div>                
+              </div>
+            </div>
+            {%- endfor %}
+            {%- endblock content %}
+        </div>
+        <div>
+            <p> <a class="btn btn-lg btn-success" href="/">Extract another video</a></p>
+        </div>
+
+ 
+
+ 
+
+ 
+
+        <footer class="footer">
+
+            <p>&copy; Luffy 2016</p>
+
+        </footer>
+
+ 
+
+    </div>
+<script src="../static/js/jquery-1.11.2.js"></script>
+</body>
+
+ 
+
+</html>

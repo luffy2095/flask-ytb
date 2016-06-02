@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+ 
+
+<head>
+
+    <title>Youtube Extractor</title>
+
+ 
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+ 
+
+    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+
+ 
+
+ 
+
+</head>
+
+ 
+
+<body>
+
+ 
+
+    <div class="container">
+
+        <div class="header">
+
+            <h3 class="text-muted">Python Flask-Pafy App</h3>
+
+        </div>
+
+ 
+
+        <div class="jumbotron">
+
+            <form>
+            <label for="inputURL" class="sr-only">URL</label> 
+
+            <input type="url" name="inputURL" id="inputURL" class="form-control" placeholder="URL" required autofocus>
+            
+            <p><a class="btn btn-lg btn-success" id="btnURL"  role="button" style="margin-top:30px;">Extract</a></p>
+            </form>
+        </div>
+
+ 
+
+        <div class="row marketing">
+
+            <div class="col-lg-12">
+
+                <h4>Youtube</h4>
+
+                <p>Under COnstruction.</p>
+
+            </div>
+
+        </div>
+
+ 
+
+        <footer class="footer">
+
+            <p>&copy; Luffy 2016</p>
+
+        </footer>
+
+ 
+
+    </div>
+        <script src="../static/js/jquery-1.11.2.js"></script>
+    <script type="text/javascript">
+    $(function(){
+  $('#btnURL').click(function(){
+    
+    $.ajax({
+      url: '/extract_info',
+      data: $('form').serialize(),
+      type: 'POST',
+      dataType:'html',
+      success: function(response){
+        //console.log(response);
+        //$('#responseDiv').html(response);
+        var container = $('<div><div/>').append(response);
+        if($(container).find('.body-error').length)
+        {
+          window.location.href='/error'
+        }
+       else
+        {
+          window.location.href='/show'
+        }
+      },
+      error: function(error){
+        console.log(error);
+      }
+    });
+  });
+});
+</script>
+
+</body>
+
+ 
+
+</html>
+  <!--    success: function(response){
+        $('#responseDiv').html(response);
+        if($('#responseDiv.error_body').length > 0)
+          {
+            window.location.href("/show")
+          }
+        else
+        {
+          window.location.href("/show")
+        }
+      },
+      error: function(error){
+        console.log(error);
+      }--->
